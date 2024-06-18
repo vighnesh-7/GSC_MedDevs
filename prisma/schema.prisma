@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String        @id @default(uuid())
+  firstName            String
+  lastName             String?
+  username             String        @unique
+  email                String        @unique
+  role                Role          @default(PATIENT)
+  phoneNumber          String?       @unique
+  image                String?
+  passwordEnabled      Boolean?      @default(false)
+  banned               Boolean?      @default(false)
+  emailVerified        String?
+  phoneNumberVerified  String?
+  diagnosis            String?
+  assignedDoctor       String?
+  assignedDoctorId     String?
+  userScheduler     Scheduler[] @relation("UserScheduler")
+}
+
+enum Role {
+  ADMIN
+  DOCTOR
+  PATIENT
+}
+
+enum Category {
+  GENERAL
+  APPOINTMENT
+  MEDICATION
+  CHECKUP
+  OTHER
+}
+
+enum Status {
+  PENDING
+  UPCOMING
+  ACTIVE
+  COMPLETED
+  DAILY
+  WEEKLY
+}
+
+model Scheduler {
+  id                   String     @id @default(uuid())
+  userId               String
+  user                 User       @relation("UserScheduler", fields: [userId], references: [id])
+  date                 DateTime
+  status               Status     @default(ACTIVE) 
+  diagnosis            String?
+  category             Category  @default(GENERAL)
+  priority             Int       @default(0)
+  notes                String?
+}
+
