@@ -61,3 +61,12 @@ model Scheduler {
   notes                String?
 }
 
+model FAQS {
+  id                   String     @id @default(uuid())
+  question             String?
+  answer               String?
+  userId               String
+  username             String
+  userRole             Role 
+  date                 DateTime
+}

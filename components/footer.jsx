@@ -21,7 +21,7 @@
         }} >
             <div className="top flex-between mb-[25px]">
             <div className="logo-details flex-between text-slate-50 " >
-                <Image src={"/assets/icons/logo.jpeg"} width='50' height={'50'} className='mr-2 rounded-full' />
+                <Image alt='logo' src={"/assets/icons/logo.jpeg"} width='50' height={'50'} className='mr-2 rounded-full' />
                 <span className="text-3xl font-semibold " style={{fontWeight:'600'}} >MedDevs</span>
             </div>
             <div className="media-icons sm:flex hidden">

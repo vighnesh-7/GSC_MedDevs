@@ -1,5 +1,5 @@
 
-import FAQs from "@/components/FAQS";
+import FAQs from '../../components/FAQS';
 
 const Help = () => {
     return ( 

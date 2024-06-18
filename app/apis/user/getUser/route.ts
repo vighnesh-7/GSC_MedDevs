@@ -1,11 +1,14 @@
 import { NextRequest,NextResponse } from "next/server";
-import { createUser } from "../../../actions/user";
+import { getUser } from "../../../actions/user";
 
 export async function POST (req: NextRequest) {
+    
     try{
-        const userReq = await req.json();
         
-        const user = await createUser(userReq.myuser);
+        const {username} = await req.json();
+        
+        const user = await getUser(username);
+        
         
         return NextResponse.json({ message: "Success", payload: user });
     }

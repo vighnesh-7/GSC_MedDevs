@@ -12,7 +12,7 @@ const Navbar = () => {
         <div className="flex items-center h-[68px] px-4">
             <div  className="flex items-center ">
                 <Link href={"/"} >
-                    <Image src={"/assets/icons/logo.jpeg"} width={"40"} height={"40"} className=' rounded-xl' />
+                    <Image src={"/assets/icons/logo.jpeg"} alt='logo' width={"40"} height={"40"} className=' rounded-xl' />
                 </Link>
             </div>
             <MainNav />
