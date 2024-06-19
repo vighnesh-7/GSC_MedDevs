@@ -1,19 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAppointment } from "../../../actions/appointment";
+import { updateAppointment } from "../../../actions/appointment";
 
-export async function POST(req: NextRequest) {
+export const POST = async (req: NextRequest) => {
   try {
-    const {
-      userId,
-      category,
-      diagnosis,
-      date,
-      priority,
-      notes,
-      status,
-    } = await req.json();
+    const { id, userId, category, diagnosis, date, priority, notes, status } =
+      await req.json();
 
-    const appointment = await createAppointment({
+    const appointment = await updateAppointment({
+      id,
       userId,
       diagnosis,
       category,
@@ -27,4 +21,4 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     return NextResponse.json({ message: "Error" });
   }
-}
+};

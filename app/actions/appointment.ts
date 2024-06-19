@@ -25,6 +25,7 @@ export const createAppointment = async ({userId , diagnosis, category, date, pri
         const appointment = await db.scheduler.create({
           data: {
             userId: userId,
+            diagnosis : diagnosis,
             category: category,
             date: date,
             priority: Number(priority),
@@ -69,13 +70,53 @@ export const deleteAppointment = async (id: string,userId : string) => {
       throw new Error("Appointment not found");
     }
 
-    console.log("user id", userId);
     const appointments = await getAppointments(userId);
-    console.log(appointments, "appointments deleted");
     
     return appointments;
   } catch (error) {
     console.error("Error deleting appointment:", error);
+    throw error;
+  }
+};
+
+export const updateAppointment = async ({id, userId, diagnosis, category, date, priority, notes, status } :{
+  id: string,
+  userId: string,
+  diagnosis: string,
+  category: any,
+  date: Date,
+  priority: string,
+  notes: string,
+  status: any
+}) => {
+  try {
+    const user = await db.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const appointment = await db.scheduler.update({
+      where: {
+        id: id,
+      },
+      data: {
+        category: category,
+        date: date,
+        diagnosis: diagnosis,
+        priority: Number(priority),
+        notes: notes,
+        status: status,
+      }
+    });
+
+    return appointment;
+  } catch (error) {
+    console.error("Error updating appointment:", error);
     throw error;
   }
 };

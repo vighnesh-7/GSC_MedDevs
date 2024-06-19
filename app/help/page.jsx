@@ -1,9 +1,14 @@
 
+import { currentUser } from '@clerk/nextjs';
 import FAQs from '../../components/FAQS';
 
-const Help = () => {
+
+
+const Help = async () => {
+    const user = await currentUser();
+    
     return ( 
-        <FAQs/>
+        <FAQs username={user.username} />
     );
 }
 

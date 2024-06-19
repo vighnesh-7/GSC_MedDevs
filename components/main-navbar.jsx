@@ -26,7 +26,7 @@ const MainNav = () => {
         {
             href : `/videocall`,
             label:'Video Call',
-            active:pathname===`/video call`
+            active:pathname===`/videocall`
         },
         {
             href : `/diet`,
@@ -60,8 +60,8 @@ const MainNav = () => {
                     <Link
                     key={route.href}
                     href={route.href}
-                    className={("text-sm font-medium transition-colors hover:text-blue-700",
-                    route.active ? 'text-black dark:text-white decoration-2 underline-offset-4 underline decoration-green-600 font-bold' : 'text-white'
+                    className={("text-sm transition-colors hover:text-blue-700 font-semibold p-3",
+                    route.active ? 'text-black dark:text-white decoration-4 underline-offset-4 underline decoration-green-500 font-bold ' : 'text-white'
                     )}
                     >
                         {route.label}

@@ -87,7 +87,6 @@ export const updateUser = async (user: {
 }
 
 export const getAllUserSchedules = async (id: string) => {
-  console.log(id, "id");
   
   
   const user = await db.user.findUnique({
