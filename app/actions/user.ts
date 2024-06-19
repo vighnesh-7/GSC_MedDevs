@@ -7,8 +7,8 @@ export const createUser = async (user: {
   email: string;
   image?: string;
   phoneNumber?: string;
-  emailVerified?: boolean;
-  phoneNumberVerified?: boolean;
+  emailVerified?: string;
+  phoneNumberVerified?: string;
   banned?: boolean;
 }) => {
   const existingUser = await db.user.findUnique({
@@ -29,7 +29,7 @@ export const createUser = async (user: {
       email: user.email.toLowerCase(),
       image: user.image,
       phoneNumber: user.phoneNumber,
-      emailVerified: user.emailVerified,
+      emailVerified: user.emailVerified ,
       phoneNumberVerified: user.phoneNumberVerified,
       banned: user.banned,
     },

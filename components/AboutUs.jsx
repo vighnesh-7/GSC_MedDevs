@@ -16,7 +16,7 @@ const AboutUs = () => {
 
             <div className="px-60 pt-5">
                 <RiDoubleQuotesL className="mr-auto w-7 h-7" />
-                <p className=" px-10 leading-10 font-serif font-medium text-lg  text-wrap">Join us on our mission to revolutionize healthcare and promote global well-being! Whether you're a patient seeking accessible healthcare services, a healthcare professional interested in leveraging technology to improve patient care, or a partner looking to collaborate on innovative healthcare solutions, we welcome you to MedDevs. Together, we can create a healthier, happier world for all.</p>
+                <p className=" px-10 leading-10 font-serif font-medium text-lg  text-wrap">Join us on our mission to revolutionize healthcare and promote global well-being! Whether you are a patient seeking accessible healthcare services, a healthcare professional interested in leveraging technology to improve patient care, or a partner looking to collaborate on innovative healthcare solutions, we welcome you to MedDevs. Together, we can create a healthier, happier world for all.</p>
                 <RiDoubleQuotesR className="ml-auto w-7 h-7 " />
             </div>
         </div>

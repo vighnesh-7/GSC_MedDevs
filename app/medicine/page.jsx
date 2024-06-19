@@ -1,7 +1,6 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
 import medicine_bot from '/public/assets/images/medicine_bot.jpeg'
 import { GiMedicines } from "react-icons/gi";
 

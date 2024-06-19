@@ -25,7 +25,7 @@ const FAQs = ({ username }) => {
 
   useEffect(() => {
     getCurrentUser();
-  }, []);
+  }, [user]);
 
   const faqs = [
     {

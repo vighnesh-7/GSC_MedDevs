@@ -17,6 +17,8 @@ const Profile = async () => {
     phoneNumberVerified: user?.phoneNumbers[0]?.verification.status,
   };
 
+  
+  
   return (
     <div
       style={{ display: "flex", justifyContent: "space-between", padding: 50 }}
