@@ -17,12 +17,8 @@ const Profile = async () => {
     phoneNumberVerified: user?.phoneNumbers[0]?.verification.status,
   };
 
-  
-  
   return (
-    <div
-      style={{ display: "flex", justifyContent: "space-between", padding: 50 }}
-    >
+    <div className="flex justify-between p-4 sm:p-8 md:p-12 lg:p-16">
       <UserDashboard myuser={userInfo} />
     </div>
   );

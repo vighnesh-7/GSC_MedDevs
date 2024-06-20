@@ -2,19 +2,20 @@ import { UserButton } from "@clerk/nextjs";
 import MainNav from "./main-navbar";
 import Image from "next/image";
 import Link from "next/link";
-import RazorpayComponent from "./Transaction";
-import { getUser } from "../app/actions/user";
-import { MdAdminPanelSettings } from "react-icons/md";
+import AdminPanel from "./AdminPanel";
+import { getCurrentUser, getUser } from "../app/actions/user";
+import MobileMenuToggle from "./MobileMenuToggle"; 
 
 const Navbar = async () => {
-  const dbuser = await getUser("vighnesh");
+  const user = await getUser("vighnesh");
+  // const user = await getCurrentUser();
 
   return (
     <nav
-      className=" border-b border-gray-300"
+      className="border-b border-gray-300"
       style={{ backgroundColor: "#1f7270" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
@@ -26,21 +27,14 @@ const Navbar = async () => {
                 className="rounded-xl"
               />
             </Link>
-            <MainNav />
+            <div className="hidden md:block">
+              <MainNav />
+            </div>
           </div>
-          <div className="">
+          <div className="flex items-center">
+            <MobileMenuToggle /> 
             <div className="ml-4 flex items-center md:ml-6 gap-5">
-              {dbuser?.role === "ADMIN" && (
-                <a
-                  href="http://localhost:5555/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gray-800 text-white px-3 py-2 rounded-md text-sm font-medium mr-4 flex-center me-4 hover:bg-gray-900"
-                >
-                  Admin
-                  <MdAdminPanelSettings className=" w-5 h-5 ms-2" />
-                </a>
-              )}
+              <AdminPanel user={user} />
               <UserButton afterSignOutUrl="/" />
             </div>
           </div>

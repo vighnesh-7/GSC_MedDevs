@@ -1,4 +1,23 @@
+import { currentUser } from "@clerk/nextjs";
 import { db } from "../../lib/db";
+
+export const getCurrentUser = async() => {
+  
+  const clerkUser = await currentUser();
+
+  if(!clerkUser) {
+    throw new Error("User not found");
+  }
+
+  const user = await db.user.findUnique({
+    where: {
+      username: clerkUser.username as string,
+    },
+  });
+
+  return user;
+}
+
 
 export const createUser = async (user: {
   username: string;

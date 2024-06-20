@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from "next/image";
@@ -11,9 +11,7 @@ import { useRouter } from "next/navigation";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-
-
-const Scheduler = (username) => {
+const Scheduler = ({ username }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [appointments, setAppointments] = useState([]);
   const [user, setUser] = useState({});
@@ -26,10 +24,14 @@ const Scheduler = (username) => {
     status: "ACTIVE",
     category: "GENERAL",
     priority: 0,
-    diagnosis: user.diagnosis || "",
+    diagnosis: "",
     notes: "",
-    });
+  });
   const router = useRouter();
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
 
   const getCurrentUser = async () => {
     try {
@@ -43,11 +45,10 @@ const Scheduler = (username) => {
           userId: response.data.payload.id,
           diagnosis: response.data.payload.diagnosis || "",
         });
+        await getAppointments(response.data.payload.id);
       }
-
-      await getAppointments(response.data.payload.id);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -63,10 +64,6 @@ const Scheduler = (username) => {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -88,8 +85,8 @@ const Scheduler = (username) => {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
       const response = await axios.post("/apis/appointments/create", formData);
       if (response.data.message === "Success") {
         setAppointments([...appointments, response.data.appointment]);
@@ -107,8 +104,8 @@ const Scheduler = (username) => {
   };
 
   const handleEditSubmit = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
       const response = await axios.post(
         "/apis/appointments/edit",
         currentAppointment
@@ -122,7 +119,7 @@ const Scheduler = (username) => {
         setAppointments(updatedAppointments);
         setShowEditModal(false);
         toast("Appointment updated!", {
-          icon: <FaEdit className=" w-5 h-5 ms-7" />,
+          icon: <FaEdit className="w-5 h-5 ms-7" />,
           style: {
             borderRadius: "10px",
             background: "#1c83ba",
@@ -141,7 +138,6 @@ const Scheduler = (username) => {
     } catch (error) {
       console.error(error);
       toast.error("An error occurred while updating the appointment.");
-    } finally {
     }
   };
 
@@ -189,11 +185,11 @@ const Scheduler = (username) => {
   };
 
   return (
-    <div className="scheduler-container mt-5">
+    <div className="scheduler-container mt-5 px-4 sm:px-0">
       <h2 className="text-center font-bold text-3xl mb-3">Scheduler</h2>
-      <hr style={{ height: "1.5px" }} className="bg-black opacity-15" />
-      <div className="mt-4 calendar-container flex justify-between">
-        <div>
+      <hr className="my-3" />
+      <div className="mt-4 flex flex-col sm:flex-row sm:justify-between items-center mx-5">
+        <div className="mb-4 sm:mb-0">
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
@@ -203,99 +199,78 @@ const Scheduler = (username) => {
         <div>
           <button
             onClick={addAppointment}
-            className="ms-2 bg-blue-500 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
+            className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
           >
             Add Appointment
           </button>
         </div>
       </div>
-      <div className="appointments">
-        <Suspense fallback={<div>Loading...</div>}>
-          {appointments?.length === 0 ? (
-            <div>
-              <div className="text-center bg-cover flex items-center justify-center">
-                <Image src={img} className="text-center" alt="" />
-              </div>
-              <hr
-                className="mb-3 px-3 mx-4 bg-black opacity-20"
-                style={{ height: "1.3px" }}
-              />
-              <h6 className="font-normal text-lg mt-2 indent-7">
-                Plan your future appointments and take charge of your health
-                journey today!
-              </h6>
+      <div className="appointments mt-4">
+        {appointments?.length === 0 ? (
+          <div className="text-center">
+            <div className="bg-cover flex items-center justify-center">
+              <Image src={img} className="text-center" alt="" />
             </div>
-          ) : appointments?.length > 0 ? (
-            sortedAppointments?.map((appointment, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg shadow-md p-4 mb-8 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105"
-              >
+            <hr className="my-3" />
+            <h6 className="font-normal text-lg mt-2">
+              Plan your future appointments and take charge of your health
+              journey today!
+            </h6>
+          </div>
+        ) : (
+          sortedAppointments?.map((appointment, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md p-4 mb-8 hover:shadow-xl transition duration-300 ease-in-out hover:scale-105"
+            >
+              <div className="w-full flex flex-col sm:flex-row items-center justify-between">
+                <div className="mb-2 sm:mb-0">
+                  <p className="text-gray-800 font-bold text-lg">
+                    Appointment {index + 1}
+                  </p>
+                </div>
                 <div>
-                  <div className="w-full flex items-center justify-between">
-                    <div>
-                      <p className="text-gray-800 font-bold text-lg">
-                        Appointment {index + 1}
-                      </p>
-                    </div>
-                    <div>
-                      <span
-                        className={`relative px-2 py-1 rounded-lg text-xs font-semibold text-black cursor-pointer ${
-                          statusColors[appointment?.status]
-                        }`}
-                        onClick={() => openEditModal(appointment)}
-                      >
-                        {appointment?.status}
-                      </span>
-                    </div>
-                  </div>
-                  <p className="text-gray-600">
-                    <span className="font-semibold">Category:</span>{" "}
-                    {appointment?.category}
-                  </p>
-                  <p className="text-gray-600">
-                    <span className="font-semibold">Date:</span>{" "}
-                    {new Date(appointment?.date).toLocaleString()}
-                  </p>
-                  <p className="text-gray-600">
-                    <span className="font-semibold">Diagnosis:</span>{" "}
-                    {appointment?.diagnosis || "N/A"}
-                  </p>
-                  <p className="text-gray-600">
-                    <span className="font-semibold">Priority:</span>{" "}
-                    {appointment?.priority}
-                  </p>
-                  <p className="text-gray-600">
-                    <span className="font-semibold">Notes:</span>{" "}
-                    {appointment?.notes || "N/A"}
-                  </p>
-                </div>
-                <div className="mt-1 w-full flex justify-end">
-                  <button
-                    className="bg-red-600 hover:bg-red-700 text-white font-semibold p-1.5 rounded"
-                    onClick={() => deleteAppointment(index)}
+                  <span
+                    className={`relative px-2 py-1 rounded-lg text-xs font-semibold text-black cursor-pointer ${
+                      statusColors[appointment?.status]
+                    }`}
+                    onClick={() => openEditModal(appointment)}
                   >
-                    <MdDelete className="w-5 h-5" />
-                  </button>
+                    {appointment?.status}
+                  </span>
                 </div>
               </div>
-            ))
-          ) : (
-            <div className="text-center">
-              <div className="text-center bg-cover flex items-center justify-center">
-                <Image src={img} className="text-center" alt="" />
+              <p className="text-gray-600">
+                <span className="font-semibold">Category:</span>{" "}
+                {appointment?.category}
+              </p>
+              <p className="text-gray-600">
+                <span className="font-semibold">Date:</span>{" "}
+                {new Date(appointment?.date).toLocaleString()}
+              </p>
+              <p className="text-gray-600">
+                <span className="font-semibold">Diagnosis:</span>{" "}
+                {appointment?.diagnosis || "N/A"}
+              </p>
+              <p className="text-gray-600">
+                <span className="font-semibold">Priority:</span>{" "}
+                {appointment?.priority}
+              </p>
+              <p className="text-gray-600">
+                <span className="font-semibold">Notes:</span>{" "}
+                {appointment?.notes || "N/A"}
+              </p>
+              <div className="mt-1 w-full flex justify-end">
+                <button
+                  className="bg-red-600 hover:bg-red-700 text-white font-semibold p-1.5 rounded"
+                  onClick={() => deleteAppointment(index)}
+                >
+                  <MdDelete className="w-5 h-5" />
+                </button>
               </div>
-              <hr
-                className="mb-3 px-3 mx-4 bg-black opacity-20"
-                style={{ height: "1.3px" }}
-              />
-              <h6 className="font-normal text-lg mt-2 indent-7">
-                Plan your future appointments and take charge of your health
-                journey today!
-              </h6>
             </div>
-          )}
-        </Suspense>
+          ))
+        )}
       </div>
 
       {showModal && (
@@ -515,7 +490,7 @@ const Scheduler = (username) => {
                 </button>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg"
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
                 >
                   Save
                 </button>
@@ -529,3 +504,4 @@ const Scheduler = (username) => {
 };
 
 export default Scheduler;
+

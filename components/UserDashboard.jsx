@@ -94,53 +94,53 @@ function UserDashboard({ myuser }) {
   };
 
   return (
-    <div className="container mx-auto mt-5">
-      <div className="flex">
-        <div className="w-1/4 m-auto">
+    <div className="container mx-auto mt-5 px-4">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-full md:w-1/4 mb-6 md:mb-0">
           <label htmlFor="profilePicInput">
-            <h1 className=" mx-auto w-full mb-5">
-              <strong className="text-xl font-semibold text-gray-800 mx-auto ">
+            <h1 className="mb-5 text-center">
+              <strong className="text-xl font-semibold text-gray-800">
                 {user?.role}
               </strong>
             </h1>
             <img
               src={profilePic}
               alt="Profile"
-              className="rounded-full w-56 h-56  cursor-pointer"
+              className="rounded-full w-40 h-40 md:w-56 md:h-56 mx-auto cursor-pointer"
             />
           </label>
         </div>
-        <div className="w-3/4 flex">
+        <div className="w-full md:w-3/4">
           {!showPersonalInfo && !showMedicalInfo && (
-            <div className="flex items-center justify-center w-full gap-12">
+            <div className="flex flex-col md:flex-row items-center justify-center w-full gap-6 md:gap-12">
               <div
-                className=" w-1/2 h-80 rounded-lg mb-4 cursor-pointer border-2 border-gray-300 p-5 hover:shadow-2xl transition duration-500 ease-in-out"
+                className="w-full md:w-1/2 h-64 md:h-80 rounded-lg mb-4 cursor-pointer border-2 border-gray-300 p-5 hover:shadow-2xl transition duration-500 ease-in-out"
                 onClick={showPersonalInfoFunction}
               >
                 <h1>
-                  <strong className="text-xl font-semibold text-gray-800 ">
+                  <strong className="text-xl font-semibold text-gray-800">
                     Personal Info
                   </strong>
                 </h1>
                 <img
                   src={"/assets/images/personalinfo.svg"}
                   alt="Personal Info"
-                  className="w-full h-64 rounded-lg hover:saturate-150 hover:drop-shadow-2xl transition duration-500 ease-in-out"
+                  className="w-full h-48 md:h-64 rounded-lg hover:saturate-150 hover:drop-shadow-2xl transition duration-500 ease-in-out"
                 />
               </div>
               <div
-                className=" w-1/2 h-80 rounded-lg mb-4 cursor-pointer border-2 border-gray-300 p-5 hover:shadow-2xl transition duration-500 ease-in-out"
+                className="w-full md:w-1/2 h-64 md:h-80 rounded-lg mb-4 cursor-pointer border-2 border-gray-300 p-5 hover:shadow-2xl transition duration-500 ease-in-out"
                 onClick={showMedicalInfoFunction}
               >
                 <h1>
-                  <strong className="text-xl font-semibold text-gray-800 ">
+                  <strong className="text-xl font-semibold text-gray-800">
                     Medical Info
                   </strong>
                 </h1>
                 <img
                   src={"/assets/images/medinfo.svg"}
                   alt="Medical Info"
-                  className="w-full h-64 rounded-lg  hover:saturate-150 hover:drop-shadow-2xl transition duration-500 ease-in-out"
+                  className="w-full h-48 md:h-64 rounded-lg hover:saturate-150 hover:drop-shadow-2xl transition duration-500 ease-in-out"
                 />
               </div>
             </div>
@@ -149,14 +149,16 @@ function UserDashboard({ myuser }) {
           {showPersonalInfo && (
             <div className="w-full relative">
               <button
-                className="absolute -top-3 right-0 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2  rounded-full"
+                className="absolute -top-3 right-0 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold p-2 rounded-full"
                 onClick={() => setShowPersonalInfo(false)}
               >
-                <IoClose className=" font-bold w-6 h-6" />
+                <IoClose className="font-bold w-6 h-6" />
               </button>
               <form onSubmit={handleSubmit(handleEditSubmit)}>
                 <div className="mb-4">
-                  <h1 className="block text-xl mb-4 font-semibold">Personal Info:</h1>
+                  <h1 className="block text-xl mb-4 font-semibold">
+                    Personal Info:
+                  </h1>
                   <div className="mb-2">
                     <label className="block">Username:</label>
                     <input
@@ -167,8 +169,8 @@ function UserDashboard({ myuser }) {
                       disabled={user?.role === "PATIENT"}
                     />
                   </div>
-                  <div className="mb-2 flex items-center justify-between gap-20">
-                    <div className="w-full">
+                  <div className="mb-2 flex flex-col md:flex-row md:gap-4">
+                    <div className="w-full md:w-1/2 mb-2 md:mb-0">
                       <label className="block">First Name:</label>
                       <input
                         type="text"
@@ -177,7 +179,7 @@ function UserDashboard({ myuser }) {
                         defaultValue={user?.firstName}
                       />
                     </div>
-                    <div className="w-full">
+                    <div className="w-full md:w-1/2">
                       <label className="block">Last Name:</label>
                       <input
                         type="text"
@@ -239,7 +241,9 @@ function UserDashboard({ myuser }) {
               </button>
               <form onSubmit={handleSubmit(handleEditSubmit)}>
                 <div className="mb-4">
-                  <h1 className="block font-semibold mb-4 text-xl">Medical Info:</h1>
+                  <h1 className="block font-semibold mb-4 text-xl">
+                    Medical Info:
+                  </h1>
                   <div className="mb-2">
                     <label className="block">Username:</label>
                     <input
