@@ -1,5 +1,6 @@
 "use client";
 
+import useUserStore from "../hooks/useUserStore";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -8,6 +9,7 @@ import { IoClose } from "react-icons/io5";
 
 function UserDashboard({ myuser }) {
   const [user, setUser] = useState({});
+  const {setStoreUser} = useUserStore();
   const [isEditing, setIsEditing] = useState(false);
   const [profilePic, setProfilePic] = useState(myuser.image);
   const [showPersonalInfo, setShowPersonalInfo] = useState(false);
@@ -46,10 +48,13 @@ function UserDashboard({ myuser }) {
         username: myuser.username,
       });
       if (response.data.message === "Success") {
+        setStoreUser(response.data.payload);
         setUser(response.data.payload);
-        reset(response.data.payload); // Reset form with fetched user data
+        reset(response.data.payload); 
         toast.success("User fetched Successfully");
       }
+
+      
     } catch (e) {
       toast.error("User fetch failed");
       console.log(e);

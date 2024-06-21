@@ -15,7 +15,7 @@ const MainNav = () => {
     },
     {
       href: `/profile/settings`,
-      label: "Your Profile",
+      label: "Profile",
       active: pathname === `/profile/settings`,
     },
     {
@@ -51,7 +51,7 @@ const MainNav = () => {
   ];
 
   return (
-    <nav className="flex flex-col max-sm:bg-red-400 items-start space-y-2 md:space-y-0 md:flex-row md:space-x-3 lg:space-x-5 mx-6">
+    <nav className="flex flex-col max-sm:pb-8 max-sm:bg-opacity-30 max-sm:backdrop-filter max-sm:backdrop-blur-lg max-sm:border border-opacity-20 max-sm:rounded-lg max-sm:shadow-lg items-start space-y-2 md:space-y-0 md:flex-row md:space-x-3 lg:space-x-5 mx-6">
       {routes.map((route) => (
         <Link
           key={route.href}
@@ -60,9 +60,10 @@ const MainNav = () => {
             text-medium transition-colors font-semibold p-1
             ${
               route.active
-                ? "text-black dark:text-white decoration-4 underline-offset-4 underline decoration-green-500 font-bold"
-                : "text-white"
+                ? "text-black dark:text-white decoration-4 underline-offset-4 underline decoration-green-500 font-bold "
+                : "text-white  "
             }
+                max-sm:p-5 max-sm:pb-1 
           `}
         >
           {route.label}

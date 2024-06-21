@@ -12,17 +12,17 @@ const MobileMenuToggle = () => {
   };
 
   return (
-    <div className="md:hidden relative">
-      <button className="text-white" onClick={toggleMenu}>
+    <div className="md:hidden relative ms-5">
+      <button className="text-white z-50 " onClick={toggleMenu}>
         <FaBars size={24} />
       </button>
       {isMenuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black opacity-50 z-40"
+            className="fixed inset-0 bg-black opacity-50 z-40  "
             onClick={toggleMenu}
           ></div>
-          <div className="absolute top-16 left-0 right-0 bg-teal-800 flex flex-col items-start p-4 z-50">
+          <div className="absolute top-16 -right-28 flex flex-col items-start p-2 z-50  ">
             <MainNav />
           </div>
         </>

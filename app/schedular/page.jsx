@@ -7,7 +7,7 @@ const Schedular = async () => {
   const user = await currentUser();
 
   return (
-    <div className="my-16">
+    <div className="my-16 max-sm:px-4 sm:w-3/5 mx-auto ">
       <Suspense fallback={<Loading/>}>
         <Scheduler username={user.username} />
       </Suspense>

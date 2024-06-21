@@ -3,12 +3,9 @@ import MainNav from "./main-navbar";
 import Image from "next/image";
 import Link from "next/link";
 import AdminPanel from "./AdminPanel";
-import { getCurrentUser, getUser } from "../app/actions/user";
 import MobileMenuToggle from "./MobileMenuToggle"; 
 
 const Navbar = async () => {
-  const user = await getUser("vighnesh");
-  // const user = await getCurrentUser();
 
   return (
     <nav
@@ -34,7 +31,7 @@ const Navbar = async () => {
           <div className="flex items-center">
             <MobileMenuToggle /> 
             <div className="ml-4 flex items-center md:ml-6 gap-5">
-              <AdminPanel user={user} />
+              <AdminPanel  />
               <UserButton afterSignOutUrl="/" />
             </div>
           </div>

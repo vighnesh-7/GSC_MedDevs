@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
@@ -185,21 +185,21 @@ const Scheduler = ({ username }) => {
   };
 
   return (
-    <div className="scheduler-container mt-5 px-4 sm:px-0">
+    <div className="scheduler-container max-sm:w-full mt-5 p-5 bg-gray-100">
       <h2 className="text-center font-bold text-3xl mb-3">Scheduler</h2>
       <hr className="my-3" />
-      <div className="mt-4 flex flex-col sm:flex-row sm:justify-between items-center mx-5">
-        <div className="mb-4 sm:mb-0">
+      <div className="mt-4 flex flex-col sm:flex-row sm:justify-between items-center mx-5  ">
+        <div className="mb-8 sm:mb-0 ">
           <DatePicker
             selected={selectedDate}
             onChange={handleDateChange}
-            className="p-2 ps-4 bg-stone-200 rounded-xl me-2"
+            className="p-2 ps-4 bg-stone-200 rounded-xl me-2 max-sm:w-60  "
           />
         </div>
         <div>
           <button
             onClick={addAppointment}
-            className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded"
+            className="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded max-sm:mb-5"
           >
             Add Appointment
           </button>
@@ -226,12 +226,12 @@ const Scheduler = ({ username }) => {
               <div className="w-full flex flex-col sm:flex-row items-center justify-between">
                 <div className="mb-2 sm:mb-0">
                   <p className="text-gray-800 font-bold text-lg">
-                    Appointment {index + 1}
+                    Schedule {index + 1}
                   </p>
                 </div>
                 <div>
                   <span
-                    className={`relative px-2 py-1 rounded-lg text-xs font-semibold text-black cursor-pointer ${
+                    className={`relative px-2 py-1 max-sm:mb-16 rounded-lg text-xs font-semibold text-black cursor-pointer ${
                       statusColors[appointment?.status]
                     }`}
                     onClick={() => openEditModal(appointment)}
@@ -240,7 +240,7 @@ const Scheduler = ({ username }) => {
                   </span>
                 </div>
               </div>
-              <p className="text-gray-600">
+              <p className="text-gray-600 max-sm:mt-5">
                 <span className="font-semibold">Category:</span>{" "}
                 {appointment?.category}
               </p>
@@ -256,7 +256,7 @@ const Scheduler = ({ username }) => {
                 <span className="font-semibold">Priority:</span>{" "}
                 {appointment?.priority}
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-600 break-words text-balance">
                 <span className="font-semibold">Notes:</span>{" "}
                 {appointment?.notes || "N/A"}
               </p>
@@ -504,4 +504,3 @@ const Scheduler = ({ username }) => {
 };
 
 export default Scheduler;
-

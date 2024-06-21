@@ -1,7 +1,12 @@
+'use client'
 import React from "react";
 import { MdAdminPanelSettings } from "react-icons/md";
+import  useUserStore  from "../hooks/useUserStore";
 
-const AdminPanel = async ( {user} ) => {
+
+const AdminPanel =  ( ) => {
+  const {storeUser} = useUserStore();
+  const user = storeUser;
 
   return (
     <div>
