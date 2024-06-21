@@ -3,10 +3,9 @@ import MainNav from "./main-navbar";
 import Image from "next/image";
 import Link from "next/link";
 import AdminPanel from "./AdminPanel";
-import MobileMenuToggle from "./MobileMenuToggle"; 
+import MobileMenuToggle from "./MobileMenuToggle";
 
 const Navbar = async () => {
-
   return (
     <nav
       className="border-b border-gray-300"
@@ -29,9 +28,9 @@ const Navbar = async () => {
             </div>
           </div>
           <div className="flex items-center">
-            <MobileMenuToggle /> 
             <div className="ml-4 flex items-center md:ml-6 gap-5">
-              <AdminPanel  />
+              <AdminPanel />
+              <MobileMenuToggle />
               <UserButton afterSignOutUrl="/" />
             </div>
           </div>

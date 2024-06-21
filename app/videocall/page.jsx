@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const VideoCall = () => {
   return (
-    <div className="flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 h-[80vh] ">
       <h1 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
         Video Call with Your Doctor
       </h1>

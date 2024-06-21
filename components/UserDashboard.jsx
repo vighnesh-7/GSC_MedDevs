@@ -9,7 +9,7 @@ import { IoClose } from "react-icons/io5";
 
 function UserDashboard({ myuser }) {
   const [user, setUser] = useState({});
-  const {setStoreUser} = useUserStore();
+  const { setStoreUser } = useUserStore();
   const [isEditing, setIsEditing] = useState(false);
   const [profilePic, setProfilePic] = useState(myuser.image);
   const [showPersonalInfo, setShowPersonalInfo] = useState(false);
@@ -39,7 +39,9 @@ function UserDashboard({ myuser }) {
         setUser(response.data.payload);
         toast.success("User created Successfully");
       }
-    } catch (e) {}
+    } catch (e) {
+       getCurrentUser();
+    }
   };
 
   const getCurrentUser = async () => {
@@ -50,11 +52,9 @@ function UserDashboard({ myuser }) {
       if (response.data.message === "Success") {
         setStoreUser(response.data.payload);
         setUser(response.data.payload);
-        reset(response.data.payload); 
+        reset(response.data.payload);
         toast.success("User fetched Successfully");
       }
-
-      
     } catch (e) {
       toast.error("User fetch failed");
       console.log(e);

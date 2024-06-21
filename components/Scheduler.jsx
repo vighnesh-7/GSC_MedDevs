@@ -10,11 +10,13 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import useUserStore from "../hooks/useUserStore";
 
 const Scheduler = ({ username }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [appointments, setAppointments] = useState([]);
   const [user, setUser] = useState({});
+  const {setStoreUser} = useUserStore();
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [currentAppointment, setCurrentAppointment] = useState(null);
@@ -40,6 +42,7 @@ const Scheduler = ({ username }) => {
       });
       if (response.data.message === "Success") {
         setUser(response.data.payload);
+        setStoreUser(response.data.payload);
         setFormData({
           ...formData,
           userId: response.data.payload.id,
