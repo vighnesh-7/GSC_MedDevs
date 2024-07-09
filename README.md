@@ -31,11 +31,18 @@ Ready to experience the future of healthcare? Visit MedDevs and start your journ
 
 5. Access the application at [http://localhost:3000](http://localhost:3000).
 
-### Environment Setup
-Make sure to append the environment variable `DATABASE_URL` for NeonTech to store user data:
-```bash
-export DATABASE_URL=your_neontech_database_url
-```
+### Environment Variables
+
+| Variable                            | Description                              | Example Value               |
+| ----------------------------------- | ---------------------------------------- | --------------------------- |
+| `NEXT_PUBLIC_CLERK_SIGN_IN_URL`     | URL for sign-in page                     | `/sign-in`                  |
+| `NEXT_PUBLIC_CLERK_SIGN_UP_URL`     | URL for sign-up page                     | `/sign-up`                  |
+| `NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL`| URL after sign-in                        | `/`                         |
+| `NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL`| URL after sign-up                        | `/`                         |
+| `DATABASE_URL`                      | NeonTech database URL                    | `your_neontech_database_url`|
+| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk publishable key                    | `your_publishable_key`      |
+| `CLERK_SECRET_KEY`                  | Clerk secret key                         | `your_clerk_key`            |
+
 
 ### Prisma Setup
 To handle the object relations, we use Prisma ORM. Follow these commands to set up Prisma:
