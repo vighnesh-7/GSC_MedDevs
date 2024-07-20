@@ -17,10 +17,11 @@ test
 
 **Password:** 
 ```plaintext
-test-vighnesh
+testvighnesh
 ```
 
-Use these credentials to explore our platform and experience the features firsthand.You can test these credentials on my website: [MedDevs Live Test](https://meddevs.vighneshvangari.in/)
+Use these credentials to explore our platform and experience the features firsthand.You can test these credentials on my website: [MedDevs Live](https://meddevs.vighneshvangari.in/)
+
 
 
 ## Getting Started
