@@ -3,8 +3,25 @@ Welcome to MedDevs!
 
 Our project is dedicated to revolutionizing healthcare accessibility and convenience through innovative technology. Whether you're a patient seeking remote healthcare services or a healthcare provider looking to streamline your practice, our platform offers a comprehensive solution tailored to your needs.
 
+
 ## Introduction
 MedDevs is an online platform designed to facilitate remote healthcare services, providing a seamless experience for patients, healthcare providers, caregivers, and health organizations. Our goal is to enhance communication, accessibility, and efficiency in healthcare delivery, ultimately improving health outcomes and well-being for all.
+
+
+## Live Test User Credentials
+
+**Username:** 
+```plaintext
+test
+```
+
+**Password:** 
+```plaintext
+test-vighnesh
+```
+
+Use these credentials to explore our platform and experience the features firsthand.You can test these credentials on my website: [MedDevs Live Test](https://meddevs.vighneshvangari.in/)
+
 
 ## Getting Started
 Ready to experience the future of healthcare? Visit MedDevs and start your journey towards better health and well-being today!
