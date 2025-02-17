@@ -13,7 +13,7 @@ const VideoCall = () => {
           from the comfort of your home.
         </p>
       </div>
-      <Link href="https://localhost-agora.vercel.app/">
+      <Link href="https://healcare-videochat.vercel.app/create">
         <button className="py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-md font-semibold animate-bounce">
           Go To Video Call
         </button>
